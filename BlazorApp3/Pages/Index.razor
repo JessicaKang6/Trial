@@ -1,0 +1,138 @@
+﻿@page "/"
+
+<style>
+    #myDIV {
+    visibility: @visibilityStatus;
+}
+.startButton{
+    visibility: @startButtonVisibility;
+}
+.modeButton{
+    visibility: @modeButtonVisibility;
+}
+#additionSubmit{
+    visibility: @additionSubmitVisibility;
+}
+</style>
+blah
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world! </h1>
+
+Welcome to your new app.
+ 
+@testString 
+
+<p>
+<button class="startButton" @onclick=Start>Start</button> 
+</p>
+
+<span><button class="modeButton" @onclick=Addition>+</button>
+    <button class="modeButton" @onclick=Subtraction>-</button>
+    </span>
+
+<div id="myDIV">
+<p> @number @function @number2 </p>
+
+<p>
+    <input @onkeypress="Enter" @bind="InputValue"/>
+</p>
+
+<p> @error @goodJob </p>
+</div>
+
+
+@code {
+    string testString = "initial";
+    public string visibilityStatus = "hidden";
+    public string startButtonVisibility = "visible";
+    public string modeButtonVisibility = "hidden";
+    public string additionSubmitVisibility = "hidden";
+    private int? InputValue { get; set; }
+
+    int number = 0;
+    int number2 = 0;
+    private int? answer { get; set; }
+    string function = "";
+
+    string error = "";
+    string goodJob = "";
+
+    bool addition = false;
+    bool subtraction = false;
+
+    private void Start()
+    {
+        modeButtonVisibility = "visible";
+        startButtonVisibility = "hidden";
+    }
+
+    private void Addition()
+    {
+        visibilityStatus = "visible";
+        modeButtonVisibility = "hidden";
+        Random rnd = new Random();
+        number = rnd.Next(1, 10);
+        number2 = rnd.Next(number, 10);
+        answer = number + number2;
+        this.InputValue = null;
+        function = "+";
+        addition = true;
+    }
+
+    public void Subtraction()
+    {
+        visibilityStatus = "visible";
+        modeButtonVisibility = "hidden";
+        function = "-";
+        subtraction = true;
+            Random rnd = new Random();
+            number2 = rnd.Next(1, 10);
+            number = rnd.Next(number2, 10);
+            answer = number - number2;
+            this.InputValue = null;
+            error = "";
+            goodJob = "good job";
+            testString = "pressed";
+    }
+
+
+    public void Enter(KeyboardEventArgs e)
+    {
+        if (e.Key != "Enter")
+            return;
+        
+        if (addition == true)
+            {
+                Random rnd = new Random();
+                number = rnd.Next(1, 10);
+                number2 = rnd.Next(1, 10);
+                answer = number + number2;
+                this.InputValue = null;
+                error = "";
+                goodJob = "good job";
+
+            }
+            if (subtraction == true)
+            {
+                bool submission = answer == InputValue;
+                if (submission == true)
+        {
+             Random rnd = new Random();
+            number2 = rnd.Next(1, 10);
+            number = rnd.Next(number2, 10);
+            answer = number - number2;
+            this.InputValue = null;
+            error = "";
+            goodJob = "good job";
+            testString = "pressed";   
+            }
+            if (submission == false)
+        {
+            goodJob = "";
+            error = "wrong";
+        }     
+    }
+    }
+    }
+   

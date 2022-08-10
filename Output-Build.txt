@@ -1,0 +1,5 @@
+﻿Build started...
+1>------ Build started: Project: BlazorApp3, Configuration: Debug Any CPU ------
+1>BlazorApp3 -> C:\Users\jessi\OneDrive\Documents\School Things\IST\BlazorApp3\BlazorApp3\bin\Debug\net6.0\BlazorApp3.dll
+1>BlazorApp3 (Blazor output) -> C:\Users\jessi\OneDrive\Documents\School Things\IST\BlazorApp3\BlazorApp3\bin\Debug\net6.0\wwwroot
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
